@@ -54,3 +54,4 @@ MESSAGE(STATUS "Using External Root: $ENV{H3D_EXTERNAL_ROOT}")
             libfolder = "lib64"
 
         self.cpp_info.libs = tools.collect_libs(self, folder=libfolder)
+        self.cpp_info.libdirs = [libfolder]
