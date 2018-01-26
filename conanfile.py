@@ -48,10 +48,12 @@ MESSAGE(STATUS "Using External Root: $ENV{H3D_EXTERNAL_ROOT}")
         self.copy(pattern='FindHAPI.cmake' , dst="cmake", keep_path=False)
 
     def package_info(self):
-        if self.settings.arch == "x86":
-            libfolder = "lib32"
-        else:
-            libfolder = "lib64"
+        libfolder = 'lib'
+        if self.settings.os == "Windows":
+            if self.settings.arch == "x86":
+                libfolder = "lib32"
+            else:
+                libfolder = "lib64"
 
         self.cpp_info.libs = tools.collect_libs(self, folder=libfolder)
         self.cpp_info.libdirs = [libfolder]
